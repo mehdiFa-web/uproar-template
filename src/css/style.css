@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body { 
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.category-active {
+    background: #374151;
+}
+.category-active::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 3px;
+    background: #8b5cf6;
+}
+
+.card {
+    @apply bg-gray-800 rounded-md;
+}
+
+.card_header {
+    padding-top: 56.47%;
+    @apply relative;
+}
+.card_header img {
+    @apply absolute inset-0 object-cover w-full h-full;
+}

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uproar</title>
+  </head>
+  <body class="bg-gray-700">
+    <div class="lg:flex lg:h-screen">
+      <aside class="lg:h-full lg:bg-gray-800 lg:min-w-aside">
+        <nav x-data="{ isMenuOpen: false }" class="border-b border-gray-600 lg:border-none">
+          <div>
+            <!--
+              Header
+            -->
+            <div class="p-4 flex items-center justify-between border-b border-gray-600">
+              <div class="w-1/2">
+                <a href="/" class="flex items-center">
+                  <span class="p-3 bg-purple-500 rounded">
+                    <svg viewBox="0 0 20 18" class="text-white w-8" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0457 5.09816C17.4378 5.18296 17.8159 5.32034 18.1625 5.51694C20.0992 6.62242 20.5649 9.03067 19.2726 11.2461C18.4424 12.6702 16.6265 13.5061 15.0064 13.7138C14.7241 15.7417 12.5319 18 9.99985 18H9.99889C7.46686 17.9983 5.27539 15.7407 4.99331 13.7138C3.37224 13.5061 1.55728 12.6702 0.727088 11.2452C-0.56469 9.03162 -0.0987872 6.62242 1.83529 5.51789C2.18351 5.32034 2.56242 5.18367 2.95451 5.09816C2.95015 5.08272 2.94531 5.06682 2.94048 5.05092C2.93389 5.02924 2.9273 5.00756 2.92191 4.98706L2.92164 4.98607C2.78333 4.4739 2.36509 2.92523 3.34228 1.64269C4.05078 0.712264 5.1279 0.427089 5.70817 0.273458L5.71038 0.272874C6.18731 0.146623 6.82361 0 7.49011 0C8.4919 0 9.34965 0.342514 10.0006 0.947007C10.6515 0.342514 11.5092 0 12.511 0C13.1775 0 13.8131 0.146623 14.2934 0.273822C14.8707 0.425419 15.9487 0.710374 16.6581 1.64198C17.6366 2.92527 17.2173 4.47501 17.0793 4.98532L17.0792 4.98541C17.0744 5.00263 17.0689 5.02043 17.0634 5.03833C17.0573 5.05836 17.0511 5.07852 17.0457 5.09816ZM13.7367 2.32014C12.6208 2.02358 11.3815 1.84214 10.9671 3.36711C10.5537 4.89303 11.1224 7.55142 12.2383 7.84656C13.3532 8.14241 14.5935 5.96368 15.0078 4.43776C15.4203 2.91184 14.8518 2.61505 13.7367 2.32014ZM6.26328 2.31943C7.37915 2.02263 8.61868 1.84214 9.03281 3.3664C9.44527 4.89232 8.87751 7.55166 7.76165 7.84585C6.6465 8.1417 5.40721 5.96226 4.99211 4.43705C4.5787 2.91184 5.14741 2.61434 6.26328 2.31943ZM2.58471 10.1864C3.29147 11.3994 5.77868 11.9707 6.66567 11.4655C7.42584 11.0334 6.75974 9.94684 6.10717 8.88232L6.10716 8.88231L6.10715 8.88229C5.99911 8.70604 5.89143 8.5304 5.79067 8.35844C5.0839 7.14448 3.79404 6.84697 2.90705 7.35221C2.01935 7.85912 1.87795 8.97477 2.58471 10.1864ZM9.99961 15.8805C8.40083 15.8795 7.10473 14.1952 7.10473 13.283C7.10473 12.518 8.01485 12.5374 9.25054 12.5638H9.2506C9.48951 12.5689 9.74059 12.5743 9.99961 12.5743C10.2616 12.5745 10.5154 12.5692 10.7568 12.5642L10.7569 12.5642C11.9884 12.5384 12.8945 12.5195 12.8945 13.283C12.8942 14.1942 11.5984 15.8805 9.99961 15.8805ZM13.3335 11.4662C14.2203 11.9707 16.7078 11.4001 17.4145 10.1871C18.1213 8.97572 17.9796 7.86006 17.0919 7.35316C16.2059 6.84863 14.9151 7.14542 14.2083 8.35938C14.1073 8.53202 13.9993 8.70835 13.8909 8.88527C13.2394 9.94882 12.5747 11.0338 13.3335 11.4662Z" fill="white"/>
+                    </svg>
+                  </span>
+                  <span class="uppercase font-bold text-white ml-2">
+                    uproar
+                  </span>
+                  <span class="ml-2 bg-gray-500 px-2 py-1 text-white rounded font-semibold text-xs">
+                    beta
+                  </span>
+                </a>
+              </div>
+              <div class="w-1/2 flex lg:hidden">
+                <button class="ml-auto" x-on:click.prevent="isMenuOpen =!isMenuOpen">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <!--
+              
+            -->
+              <div x-bind:class="{'hidden lg:block w-full bg-gray-800 py-6': !isMenuOpen,'lg:block w-full bg-gray-800 py-6':isMenuOpen}" class="w-full bg-gray-800 py-6 lg:block">
+                <header class="flex justify-center lg:hidden">
+                  <a href="/" class="flex items-center" title="profile settings">
+                    <img class="w-16" src="./src/assets/Rectangle.png" alt="">
+                    <div class="ml-4">
+                      <div class="text-white font-semibold">
+                        Jeremy Manning
+                      </div>
+                      <div class="flex items-center text-green-400" aria-hidden="true">
+                        <svg class="fill-current" width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="3" cy="3" r="3" />
+                        </svg>
+                        <span class="ml-2 font-semibold">
+                          Online
+                        </span>
+                      </div>
+                    </div>
+                    <span class="ml-4 bg-purple-500 px-2 py-1 text-white rounded font-bold text-xs" aria-hidden="true">
+                      beta
+                    </span>
+                  </a>
+                </header>
+                <!--
+                  Nav items
+                -->
+                <ul class="mt-4 lg:m-0">
+                  <li>
+                    <a href="#" class="text-white block py-1.5 px-7">Games</a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-white block py-1.5 px-7">All Games</a>
+                  </li>
+                  <li x-data="{ isOpen: false }">
+                    <a href="#" class="text-white block py-1.5 px-7 flex justify-between items-center" 
+                                x-on:click.prevent="isOpen = !isOpen"
+                                >
+                      Categories
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </a>
+                    <template x-if="isOpen">
+                      <ul>
+                        <li>
+                          <a class="block text-white px-10 py-1.5 relative category-active" href="#">Action</a>
+                        </li>
+                        <li>
+                          <a class="block text-white px-10 py-1.5" href="#">Adventure</a>
+                        </li>
+                        <li>
+                          <a class="block text-white px-10 py-1.5" href="#">Casual</a>
+                        </li>
+                        <li>
+                          <a class="block text-white px-10 py-1.5" href="#">Strategy</a>
+                        </li>
+                        <li>
+                          <a class="block text-white px-10 py-1.5" href="#">Intellectual</a>
+                        </li>
+                        <li>
+                          <a class="block text-white px-10 py-1.5" href="#">Sport</a>
+                        </li>
+                      </ul>
+                    </template>
+                    
+                  </li>
+                  <li>
+                    <a href="#" class="text-white block py-1.5 px-7">Recommended</a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-white block py-1.5 px-7">New!</a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-white block py-1.5 px-7">Most Played</a>
+                  </li>
+                </ul>
+              </div>
+            
+          </div>
+          
+        </nav>
+        
+        
+      </aside>
+
+      <div class="lg:w-full lg:h-full lg:flex lg:flex-col">
+        <header class="hidden lg:block p-4 lg:px-8 border-b border-gray-600 ">
+            <nav class="flex justify-between items-center">
+              <ul class="hidden -mx-2 lg:flex">
+                <li>
+                  <a class="p-2 block text-white text-sm" href="#">
+                    FAQ
+                  </a>
+                </li>
+                <li>
+                  <a class="p-2 block text-white text-sm" href="#">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a class="p-2 block text-white text-sm" href="#">
+                    Support
+                  </a>
+                </li>
+                <li>
+                  <a class="p-2 block text-white text-sm" href="#">
+                    Eng
+                  </a>
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  <a href="/" class="flex items-center" title="profile settings">
+                    <img class="w-13" src="./src/assets/Rectangle.png" alt="">
+                    <div class="ml-4">
+                      <div class="text-white font-semibold">
+                        Jeremy Manning
+                      </div>
+                      <div class="flex items-center text-green-400" aria-hidden="true">
+                        <svg class="fill-current" width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="3" cy="3" r="3" />
+                        </svg>
+                        <span class="ml-2 font-semibold">
+                          Online
+                        </span>
+                      </div>
+                    </div>
+                    <span class="ml-4 bg-purple-500 px-2 py-1 text-white rounded font-bold text-xs" aria-hidden="true">
+                      beta
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#"></a>
+                </li>
+                <li>
+                  <a href="#"></a>
+                </li>
+                <li>
+                  <a href="#"></a>
+                </li>
+              </ul>
+            </nav>
+        </header>
+        <!--
+        Main section
+      -->
+      <main class="lg:overflow-y-scroll lg:h-full">
+        <div>
+          <section>
+            <header>
+              <div class="px-4 mx-auto py-6 lg:px-8">
+                <h2 class="uppercase font-semibold text-gray-400">
+                  Don't miss them
+                </h2>
+                <section class="lg:flex items-center justify-between">
+                  <h3 class="text-xl font-semibold text-white">
+                    Weekly quests 
+                  </h3>
+                  <div class="flex justify-between items-center lg:justify-end">
+                    <button class="px-5 py-2 bg-purple-500 hover:bg-purple-600 rounded text-white font-bold">
+                      All Games
+                    </button> 
+                    <ul class="flex">
+                      <li>
+                        <a title="prev" class="text-white p-4 inline-block border border-gray-600 rounded-md mr-2" href="#">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a title="next" class="text-white p-4 inline-block border border-gray-600 rounded-md" href="#">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                        </a>
+                      </li>
+                    </ul>
+                    
+                  </div>
+                  
+                </section>
+              </div>
+            </header>
+            <!--
+              Cards
+            -->
+            <section class="p-4 lg:px-8">
+              <div class="flex flex-wrap -ml-2 -mr-2">
+                <div class="p-2 w-full sm:w-1/2 md:w-1/3 xl:w-1/4">
+                  <article class="card lg:h-full lg:flex lg:flex-col"> 
+                    <div class="card_header">
+                      <img src="./src/assets/Pubg.png" alt="">
+                    </div>
+                    <div class="card_body text-white p-4">
+                      <h4 class="font-semibold">
+                        PUBG Mobile
+                      </h4>
+                      <p class="text-gray-300 text-sm">Deal 5000 damage to enemies with grenades.</p>
+                    </div>
+                    <div class="p-4 flex justify-between items-center border-t border-gray-600 lg:mt-auto">
+                      <div class="flex">
+                        <span class="flex items-center mr-4">
+                          <span class="p-2 bg-purple-500 rounded">
+                            <svg viewBox="0 0 20 18" class="text-white h-3" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0457 5.09816C17.4378 5.18296 17.8159 5.32034 18.1625 5.51694C20.0992 6.62242 20.5649 9.03067 19.2726 11.2461C18.4424 12.6702 16.6265 13.5061 15.0064 13.7138C14.7241 15.7417 12.5319 18 9.99985 18H9.99889C7.46686 17.9983 5.27539 15.7407 4.99331 13.7138C3.37224 13.5061 1.55728 12.6702 0.727088 11.2452C-0.56469 9.03162 -0.0987872 6.62242 1.83529 5.51789C2.18351 5.32034 2.56242 5.18367 2.95451 5.09816C2.95015 5.08272 2.94531 5.06682 2.94048 5.05092C2.93389 5.02924 2.9273 5.00756 2.92191 4.98706L2.92164 4.98607C2.78333 4.4739 2.36509 2.92523 3.34228 1.64269C4.05078 0.712264 5.1279 0.427089 5.70817 0.273458L5.71038 0.272874C6.18731 0.146623 6.82361 0 7.49011 0C8.4919 0 9.34965 0.342514 10.0006 0.947007C10.6515 0.342514 11.5092 0 12.511 0C13.1775 0 13.8131 0.146623 14.2934 0.273822C14.8707 0.425419 15.9487 0.710374 16.6581 1.64198C17.6366 2.92527 17.2173 4.47501 17.0793 4.98532L17.0792 4.98541C17.0744 5.00263 17.0689 5.02043 17.0634 5.03833C17.0573 5.05836 17.0511 5.07852 17.0457 5.09816ZM13.7367 2.32014C12.6208 2.02358 11.3815 1.84214 10.9671 3.36711C10.5537 4.89303 11.1224 7.55142 12.2383 7.84656C13.3532 8.14241 14.5935 5.96368 15.0078 4.43776C15.4203 2.91184 14.8518 2.61505 13.7367 2.32014ZM6.26328 2.31943C7.37915 2.02263 8.61868 1.84214 9.03281 3.3664C9.44527 4.89232 8.87751 7.55166 7.76165 7.84585C6.6465 8.1417 5.40721 5.96226 4.99211 4.43705C4.5787 2.91184 5.14741 2.61434 6.26328 2.31943ZM2.58471 10.1864C3.29147 11.3994 5.77868 11.9707 6.66567 11.4655C7.42584 11.0334 6.75974 9.94684 6.10717 8.88232L6.10716 8.88231L6.10715 8.88229C5.99911 8.70604 5.89143 8.5304 5.79067 8.35844C5.0839 7.14448 3.79404 6.84697 2.90705 7.35221C2.01935 7.85912 1.87795 8.97477 2.58471 10.1864ZM9.99961 15.8805C8.40083 15.8795 7.10473 14.1952 7.10473 13.283C7.10473 12.518 8.01485 12.5374 9.25054 12.5638H9.2506C9.48951 12.5689 9.74059 12.5743 9.99961 12.5743C10.2616 12.5745 10.5154 12.5692 10.7568 12.5642L10.7569 12.5642C11.9884 12.5384 12.8945 12.5195 12.8945 13.283C12.8942 14.1942 11.5984 15.8805 9.99961 15.8805ZM13.3335 11.4662C14.2203 11.9707 16.7078 11.4001 17.4145 10.1871C18.1213 8.97572 17.9796 7.86006 17.0919 7.35316C16.2059 6.84863 14.9151 7.14542 14.2083 8.35938C14.1073 8.53202 13.9993 8.70835 13.8909 8.88527C13.2394 9.94882 12.5747 11.0338 13.3335 11.4662Z" fill="white"></path>
+                            </svg>
+                          </span>
+                          <span class="text-white font-bold text-md ml-2">
+                            +100
+                          </span>
+                        </span>
+                        <span class="flex items-center">
+                          <span class="inline-block p-2 px-3 bg-red-500 rounded">
+                            <svg class="h-3" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6.98072 4.11561C6.94697 4.0452 6.87427 4.00002 6.7942 4.00002H4.3545L6.76228 0.307008C6.80242 0.245415 6.80489 0.167414 6.76867 0.103617C6.73243 0.0396095 6.66324 0 6.5883 0H3.2942C3.21617 0 3.14492 0.042797 3.10994 0.110602L0.0217095 6.11061C-0.0102102 6.17242 -0.00671186 6.24601 0.0307571 6.305C0.0684431 6.364 0.134526 6.4 0.205966 6.4H2.32304L0.0161362 11.7224C-0.0231905 11.8134 0.0118175 11.919 0.098481 11.9706C0.131824 11.9904 0.168883 12 0.205749 12C0.264835 12 0.323101 11.9754 0.363466 11.929L6.9517 4.32899C7.00335 4.26941 7.01448 4.1862 6.98072 4.11561Z" fill="white"></path>
+                              </svg>                    
+                          </span>
+                          <span class="text-white font-bold text-md ml-2">
+                            -300
+                          </span>
+                        </span>
+                      </div>
+                      <button class="px-5 py-3 bg-purple-500 hover:bg-purple-600 rounded text-white font-bold text-sm">
+                        Accept
+                      </button>
+                    </div>
+                  </article>
+                </div>
+                <div class="p-2 w-full sm:w-1/2 md:w-1/3 xl:w-1/4">
+                  <article class="card lg:h-full lg:flex lg:flex-col">
+                    <div class="card_header">
+                      <img src="./src/assets/Mayhem.png" alt="">
+                    </div>
+                    <div class="card_body text-white p-4">
+                      <h4 class="font-semibold">
+                        Mayhem Combat
+                      </h4>
+                      <p class="text-gray-300 text-sm">Win 10 games per character Mike.</p>
+                    </div>
+                    <div class="p-4 flex justify-between items-center border-t border-gray-600 lg:mt-auto">
+                      <div class="flex">
+                        <span class="flex items-center mr-4">
+                          <span class="p-2 bg-purple-500 rounded">
+                            <svg viewBox="0 0 20 18" class="text-white h-3" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0457 5.09816C17.4378 5.18296 17.8159 5.32034 18.1625 5.51694C20.0992 6.62242 20.5649 9.03067 19.2726 11.2461C18.4424 12.6702 16.6265 13.5061 15.0064 13.7138C14.7241 15.7417 12.5319 18 9.99985 18H9.99889C7.46686 17.9983 5.27539 15.7407 4.99331 13.7138C3.37224 13.5061 1.55728 12.6702 0.727088 11.2452C-0.56469 9.03162 -0.0987872 6.62242 1.83529 5.51789C2.18351 5.32034 2.56242 5.18367 2.95451 5.09816C2.95015 5.08272 2.94531 5.06682 2.94048 5.05092C2.93389 5.02924 2.9273 5.00756 2.92191 4.98706L2.92164 4.98607C2.78333 4.4739 2.36509 2.92523 3.34228 1.64269C4.05078 0.712264 5.1279 0.427089 5.70817 0.273458L5.71038 0.272874C6.18731 0.146623 6.82361 0 7.49011 0C8.4919 0 9.34965 0.342514 10.0006 0.947007C10.6515 0.342514 11.5092 0 12.511 0C13.1775 0 13.8131 0.146623 14.2934 0.273822C14.8707 0.425419 15.9487 0.710374 16.6581 1.64198C17.6366 2.92527 17.2173 4.47501 17.0793 4.98532L17.0792 4.98541C17.0744 5.00263 17.0689 5.02043 17.0634 5.03833C17.0573 5.05836 17.0511 5.07852 17.0457 5.09816ZM13.7367 2.32014C12.6208 2.02358 11.3815 1.84214 10.9671 3.36711C10.5537 4.89303 11.1224 7.55142 12.2383 7.84656C13.3532 8.14241 14.5935 5.96368 15.0078 4.43776C15.4203 2.91184 14.8518 2.61505 13.7367 2.32014ZM6.26328 2.31943C7.37915 2.02263 8.61868 1.84214 9.03281 3.3664C9.44527 4.89232 8.87751 7.55166 7.76165 7.84585C6.6465 8.1417 5.40721 5.96226 4.99211 4.43705C4.5787 2.91184 5.14741 2.61434 6.26328 2.31943ZM2.58471 10.1864C3.29147 11.3994 5.77868 11.9707 6.66567 11.4655C7.42584 11.0334 6.75974 9.94684 6.10717 8.88232L6.10716 8.88231L6.10715 8.88229C5.99911 8.70604 5.89143 8.5304 5.79067 8.35844C5.0839 7.14448 3.79404 6.84697 2.90705 7.35221C2.01935 7.85912 1.87795 8.97477 2.58471 10.1864ZM9.99961 15.8805C8.40083 15.8795 7.10473 14.1952 7.10473 13.283C7.10473 12.518 8.01485 12.5374 9.25054 12.5638H9.2506C9.48951 12.5689 9.74059 12.5743 9.99961 12.5743C10.2616 12.5745 10.5154 12.5692 10.7568 12.5642L10.7569 12.5642C11.9884 12.5384 12.8945 12.5195 12.8945 13.283C12.8942 14.1942 11.5984 15.8805 9.99961 15.8805ZM13.3335 11.4662C14.2203 11.9707 16.7078 11.4001 17.4145 10.1871C18.1213 8.97572 17.9796 7.86006 17.0919 7.35316C16.2059 6.84863 14.9151 7.14542 14.2083 8.35938C14.1073 8.53202 13.9993 8.70835 13.8909 8.88527C13.2394 9.94882 12.5747 11.0338 13.3335 11.4662Z" fill="white"></path>
+                            </svg>
+                          </span>
+                          <span class="text-white font-bold text-md ml-2">
+                            +100
+                          </span>
+                        </span>
+                        <span class="flex items-center">
+                          <span class="inline-block p-2 px-3 bg-red-500 rounded">
+                            <svg class="h-3" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6.98072 4.11561C6.94697 4.0452 6.87427 4.00002 6.7942 4.00002H4.3545L6.76228 0.307008C6.80242 0.245415 6.80489 0.167414 6.76867 0.103617C6.73243 0.0396095 6.66324 0 6.5883 0H3.2942C3.21617 0 3.14492 0.042797 3.10994 0.110602L0.0217095 6.11061C-0.0102102 6.17242 -0.00671186 6.24601 0.0307571 6.305C0.0684431 6.364 0.134526 6.4 0.205966 6.4H2.32304L0.0161362 11.7224C-0.0231905 11.8134 0.0118175 11.919 0.098481 11.9706C0.131824 11.9904 0.168883 12 0.205749 12C0.264835 12 0.323101 11.9754 0.363466 11.929L6.9517 4.32899C7.00335 4.26941 7.01448 4.1862 6.98072 4.11561Z" fill="white"/>
+                              </svg>                    
+                          </span>
+                          <span class="text-white font-bold text-md ml-2">
+                            -300
+                          </span>
+                        </span>
+                      </div>
+                      <button class="px-5 py-3 bg-purple-500 hover:bg-purple-600 rounded text-white font-bold text-sm">
+                        Accept
+                      </button>
+                    </div>
+                  </article>
+                </div>
+                <div class="p-2 w-full sm:w-1/2 md:w-1/3 xl:w-1/4">
+                  <article class="card lg:h-full lg:flex lg:flex-col">
+                    <div class="card_header">
+                      <img src="./src/assets/burito.png" alt="">
+                    </div>
+                    <div class="card_body text-white p-4">
+                      <h4 class="font-semibold">
+                        Burrito Bison: Launcha Libre
+                      </h4>
+                      <p class="text-gray-300 text-sm">Earn 10,000 сoins.</p>
+                    </div>
+                    <div class="p-4 flex justify-between items-center border-t border-gray-600 lg:mt-auto">
+                      <div class="flex">
+                        <span class="flex items-center mr-4">
+                          <span class="p-2 bg-purple-500 rounded">
+                            <svg viewBox="0 0 20 18" class="text-white h-3" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0457 5.09816C17.4378 5.18296 17.8159 5.32034 18.1625 5.51694C20.0992 6.62242 20.5649 9.03067 19.2726 11.2461C18.4424 12.6702 16.6265 13.5061 15.0064 13.7138C14.7241 15.7417 12.5319 18 9.99985 18H9.99889C7.46686 17.9983 5.27539 15.7407 4.99331 13.7138C3.37224 13.5061 1.55728 12.6702 0.727088 11.2452C-0.56469 9.03162 -0.0987872 6.62242 1.83529 5.51789C2.18351 5.32034 2.56242 5.18367 2.95451 5.09816C2.95015 5.08272 2.94531 5.06682 2.94048 5.05092C2.93389 5.02924 2.9273 5.00756 2.92191 4.98706L2.92164 4.98607C2.78333 4.4739 2.36509 2.92523 3.34228 1.64269C4.05078 0.712264 5.1279 0.427089 5.70817 0.273458L5.71038 0.272874C6.18731 0.146623 6.82361 0 7.49011 0C8.4919 0 9.34965 0.342514 10.0006 0.947007C10.6515 0.342514 11.5092 0 12.511 0C13.1775 0 13.8131 0.146623 14.2934 0.273822C14.8707 0.425419 15.9487 0.710374 16.6581 1.64198C17.6366 2.92527 17.2173 4.47501 17.0793 4.98532L17.0792 4.98541C17.0744 5.00263 17.0689 5.02043 17.0634 5.03833C17.0573 5.05836 17.0511 5.07852 17.0457 5.09816ZM13.7367 2.32014C12.6208 2.02358 11.3815 1.84214 10.9671 3.36711C10.5537 4.89303 11.1224 7.55142 12.2383 7.84656C13.3532 8.14241 14.5935 5.96368 15.0078 4.43776C15.4203 2.91184 14.8518 2.61505 13.7367 2.32014ZM6.26328 2.31943C7.37915 2.02263 8.61868 1.84214 9.03281 3.3664C9.44527 4.89232 8.87751 7.55166 7.76165 7.84585C6.6465 8.1417 5.40721 5.96226 4.99211 4.43705C4.5787 2.91184 5.14741 2.61434 6.26328 2.31943ZM2.58471 10.1864C3.29147 11.3994 5.77868 11.9707 6.66567 11.4655C7.42584 11.0334 6.75974 9.94684 6.10717 8.88232L6.10716 8.88231L6.10715 8.88229C5.99911 8.70604 5.89143 8.5304 5.79067 8.35844C5.0839 7.14448 3.79404 6.84697 2.90705 7.35221C2.01935 7.85912 1.87795 8.97477 2.58471 10.1864ZM9.99961 15.8805C8.40083 15.8795 7.10473 14.1952 7.10473 13.283C7.10473 12.518 8.01485 12.5374 9.25054 12.5638H9.2506C9.48951 12.5689 9.74059 12.5743 9.99961 12.5743C10.2616 12.5745 10.5154 12.5692 10.7568 12.5642L10.7569 12.5642C11.9884 12.5384 12.8945 12.5195 12.8945 13.283C12.8942 14.1942 11.5984 15.8805 9.99961 15.8805ZM13.3335 11.4662C14.2203 11.9707 16.7078 11.4001 17.4145 10.1871C18.1213 8.97572 17.9796 7.86006 17.0919 7.35316C16.2059 6.84863 14.9151 7.14542 14.2083 8.35938C14.1073 8.53202 13.9993 8.70835 13.8909 8.88527C13.2394 9.94882 12.5747 11.0338 13.3335 11.4662Z" fill="white"></path>
+                            </svg>
+                          </span>
+                          <span class="text-white font-bold text-md ml-2">
+                            +100
+                          </span>
+                        </span>
+                        <span class="flex items-center">
+                          <span class="inline-block p-2 px-3 bg-red-500 rounded">
+                            <svg class="h-3" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6.98072 4.11561C6.94697 4.0452 6.87427 4.00002 6.7942 4.00002H4.3545L6.76228 0.307008C6.80242 0.245415 6.80489 0.167414 6.76867 0.103617C6.73243 0.0396095 6.66324 0 6.5883 0H3.2942C3.21617 0 3.14492 0.042797 3.10994 0.110602L0.0217095 6.11061C-0.0102102 6.17242 -0.00671186 6.24601 0.0307571 6.305C0.0684431 6.364 0.134526 6.4 0.205966 6.4H2.32304L0.0161362 11.7224C-0.0231905 11.8134 0.0118175 11.919 0.098481 11.9706C0.131824 11.9904 0.168883 12 0.205749 12C0.264835 12 0.323101 11.9754 0.363466 11.929L6.9517 4.32899C7.00335 4.26941 7.01448 4.1862 6.98072 4.11561Z" fill="white"/>
+                              </svg>                    
+                          </span>
+                          <span class="text-white font-bold text-md ml-2">
+                            -300
+                          </span>
+                        </span>
+                      </div>
+                      <button class="px-5 py-3 bg-purple-500 hover:bg-purple-600 rounded text-white font-bold text-sm">
+                        Accept
+                      </button>
+                    </div>
+                  </article>
+                </div>
+                <div class="p-2 w-full sm:w-1/2 md:w-1/3 xl:w-1/4">
+                  <article class="card lg:h-full lg:flex lg:flex-col">
+                    <div class="card_header">
+                      <img src="./src/assets/battle.png" alt="">
+                    </div>
+                    <div class="card_body text-white p-4">
+                      <h4 class="font-semibold">
+                        Battlelands Royale
+                      </h4>
+                      <p class="text-gray-300 text-sm">Eliminate 10 opponents.</p>
+                    </div>
+                    <div class="p-4 flex justify-between items-center border-t border-gray-600 lg:mt-auto">
+                      <div class="flex">
+                        <span class="flex items-center mr-4">
+                          <span class="p-2 bg-purple-500 rounded">
+                            <svg viewBox="0 0 20 18" class="text-white h-3" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0457 5.09816C17.4378 5.18296 17.8159 5.32034 18.1625 5.51694C20.0992 6.62242 20.5649 9.03067 19.2726 11.2461C18.4424 12.6702 16.6265 13.5061 15.0064 13.7138C14.7241 15.7417 12.5319 18 9.99985 18H9.99889C7.46686 17.9983 5.27539 15.7407 4.99331 13.7138C3.37224 13.5061 1.55728 12.6702 0.727088 11.2452C-0.56469 9.03162 -0.0987872 6.62242 1.83529 5.51789C2.18351 5.32034 2.56242 5.18367 2.95451 5.09816C2.95015 5.08272 2.94531 5.06682 2.94048 5.05092C2.93389 5.02924 2.9273 5.00756 2.92191 4.98706L2.92164 4.98607C2.78333 4.4739 2.36509 2.92523 3.34228 1.64269C4.05078 0.712264 5.1279 0.427089 5.70817 0.273458L5.71038 0.272874C6.18731 0.146623 6.82361 0 7.49011 0C8.4919 0 9.34965 0.342514 10.0006 0.947007C10.6515 0.342514 11.5092 0 12.511 0C13.1775 0 13.8131 0.146623 14.2934 0.273822C14.8707 0.425419 15.9487 0.710374 16.6581 1.64198C17.6366 2.92527 17.2173 4.47501 17.0793 4.98532L17.0792 4.98541C17.0744 5.00263 17.0689 5.02043 17.0634 5.03833C17.0573 5.05836 17.0511 5.07852 17.0457 5.09816ZM13.7367 2.32014C12.6208 2.02358 11.3815 1.84214 10.9671 3.36711C10.5537 4.89303 11.1224 7.55142 12.2383 7.84656C13.3532 8.14241 14.5935 5.96368 15.0078 4.43776C15.4203 2.91184 14.8518 2.61505 13.7367 2.32014ZM6.26328 2.31943C7.37915 2.02263 8.61868 1.84214 9.03281 3.3664C9.44527 4.89232 8.87751 7.55166 7.76165 7.84585C6.6465 8.1417 5.40721 5.96226 4.99211 4.43705C4.5787 2.91184 5.14741 2.61434 6.26328 2.31943ZM2.58471 10.1864C3.29147 11.3994 5.77868 11.9707 6.66567 11.4655C7.42584 11.0334 6.75974 9.94684 6.10717 8.88232L6.10716 8.88231L6.10715 8.88229C5.99911 8.70604 5.89143 8.5304 5.79067 8.35844C5.0839 7.14448 3.79404 6.84697 2.90705 7.35221C2.01935 7.85912 1.87795 8.97477 2.58471 10.1864ZM9.99961 15.8805C8.40083 15.8795 7.10473 14.1952 7.10473 13.283C7.10473 12.518 8.01485 12.5374 9.25054 12.5638H9.2506C9.48951 12.5689 9.74059 12.5743 9.99961 12.5743C10.2616 12.5745 10.5154 12.5692 10.7568 12.5642L10.7569 12.5642C11.9884 12.5384 12.8945 12.5195 12.8945 13.283C12.8942 14.1942 11.5984 15.8805 9.99961 15.8805ZM13.3335 11.4662C14.2203 11.9707 16.7078 11.4001 17.4145 10.1871C18.1213 8.97572 17.9796 7.86006 17.0919 7.35316C16.2059 6.84863 14.9151 7.14542 14.2083 8.35938C14.1073 8.53202 13.9993 8.70835 13.8909 8.88527C13.2394 9.94882 12.5747 11.0338 13.3335 11.4662Z" fill="white"></path>
+                            </svg>
+                          </span>
+                          <span class="text-white font-bold text-md ml-2">
+                            +100
+                          </span>
+                        </span>
+                        <span class="flex items-center">
+                          <span class="inline-block p-2 px-3 bg-red-500 rounded">
+                            <svg class="h-3" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6.98072 4.11561C6.94697 4.0452 6.87427 4.00002 6.7942 4.00002H4.3545L6.76228 0.307008C6.80242 0.245415 6.80489 0.167414 6.76867 0.103617C6.73243 0.0396095 6.66324 0 6.5883 0H3.2942C3.21617 0 3.14492 0.042797 3.10994 0.110602L0.0217095 6.11061C-0.0102102 6.17242 -0.00671186 6.24601 0.0307571 6.305C0.0684431 6.364 0.134526 6.4 0.205966 6.4H2.32304L0.0161362 11.7224C-0.0231905 11.8134 0.0118175 11.919 0.098481 11.9706C0.131824 11.9904 0.168883 12 0.205749 12C0.264835 12 0.323101 11.9754 0.363466 11.929L6.9517 4.32899C7.00335 4.26941 7.01448 4.1862 6.98072 4.11561Z" fill="white"/>
+                              </svg>                    
+                          </span>
+                          <span class="text-white font-bold text-md ml-2">
+                            -300
+                          </span>
+                        </span>
+                      </div>
+                      <button class="px-5 py-3 bg-purple-500 hover:bg-purple-600 rounded text-white font-bold text-sm">
+                        Accept
+                      </button>
+                    </div>
+                  </article>
+                </div>
+              
+              </div>
+              
+              
+            </section>
+          </section>
+          <section>
+            <header>
+              <div class="px-4 mx-auto py-6 lg:px-8">
+                <h2 class="uppercase font-semibold text-gray-400">
+                  to the top
+                </h2>
+                <section class="lg:flex items-center justify-between">
+                  <h3 class="text-xl font-semibold text-white">
+                    Popular games
+                  </h3>
+                  <div class="flex justify-between items-center lg:justify-end">
+                    <button class="px-5 py-2 bg-purple-500 hover:bg-purple-600 rounded text-white font-bold">
+                      All Games
+                    </button> 
+                    <ul class="flex">
+                      <li>
+                        <a title="prev" class="text-white p-4 inline-block border border-gray-600 rounded-md mr-2" href="#">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a title="next" class="text-white p-4 inline-block border border-gray-600 rounded-md" href="#">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                        </a>
+                      </li>
+                    </ul>
+                    
+                  </div>
+                  
+                </section>
+              </div>
+            </header>
+            <!--
+              Cards
+            -->
+                      <!--
+              Cards
+            -->
+            <section class="p-4 lg:px-8">
+              <div class="flex flex-wrap -mx-2">
+                <!--
+                  Card wrapper remove width
+                -->
+                <div class="p-2 w-full sm:w-1/2 md:w-1/3 xl:w-1/4">
+                  <article class="card relative lg:h-full flex flex-col h-full"> 
+                    <div class="text-white p-4">
+                      <img class="w-16 absolute -top-4 left-2.5 rounded-md" src="./src/assets/cards/Bitmap (1).png" alt="">
+                      <div class="pl-23">
+                        <h4 class="font-semibold">
+                          Star Knight
+                        </h4>
+                        <p class="text-gray-300 text-sm">Earn 10,000 сoins.</p>
+                      </div>
+                    </div>
+                    <div class="p-4 flex justify-between items-center border-t border-gray-600 mt-auto">
+                      <div class="flex">
+                        <span class="flex items-center mr-4">
+                          <span class="p-2 bg-purple-500 rounded">
+                            <svg viewBox="0 0 20 18" class="text-white h-3" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0457 5.09816C17.4378 5.18296 17.8159 5.32034 18.1625 5.51694C20.0992 6.62242 20.5649 9.03067 19.2726 11.2461C18.4424 12.6702 16.6265 13.5061 15.0064 13.7138C14.7241 15.7417 12.5319 18 9.99985 18H9.99889C7.46686 17.9983 5.27539 15.7407 4.99331 13.7138C3.37224 13.5061 1.55728 12.6702 0.727088 11.2452C-0.56469 9.03162 -0.0987872 6.62242 1.83529 5.51789C2.18351 5.32034 2.56242 5.18367 2.95451 5.09816C2.95015 5.08272 2.94531 5.06682 2.94048 5.05092C2.93389 5.02924 2.9273 5.00756 2.92191 4.98706L2.92164 4.98607C2.78333 4.4739 2.36509 2.92523 3.34228 1.64269C4.05078 0.712264 5.1279 0.427089 5.70817 0.273458L5.71038 0.272874C6.18731 0.146623 6.82361 0 7.49011 0C8.4919 0 9.34965 0.342514 10.0006 0.947007C10.6515 0.342514 11.5092 0 12.511 0C13.1775 0 13.8131 0.146623 14.2934 0.273822C14.8707 0.425419 15.9487 0.710374 16.6581 1.64198C17.6366 2.92527 17.2173 4.47501 17.0793 4.98532L17.0792 4.98541C17.0744 5.00263 17.0689 5.02043 17.0634 5.03833C17.0573 5.05836 17.0511 5.07852 17.0457 5.09816ZM13.7367 2.32014C12.6208 2.02358 11.3815 1.84214 10.9671 3.36711C10.5537 4.89303 11.1224 7.55142 12.2383 7.84656C13.3532 8.14241 14.5935 5.96368 15.0078 4.43776C15.4203 2.91184 14.8518 2.61505 13.7367 2.32014ZM6.26328 2.31943C7.37915 2.02263 8.61868 1.84214 9.03281 3.3664C9.44527 4.89232 8.87751 7.55166 7.76165 7.84585C6.6465 8.1417 5.40721 5.96226 4.99211 4.43705C4.5787 2.91184 5.14741 2.61434 6.26328 2.31943ZM2.58471 10.1864C3.29147 11.3994 5.77868 11.9707 6.66567 11.4655C7.42584 11.0334 6.75974 9.94684 6.10717 8.88232L6.10716 8.88231L6.10715 8.88229C5.99911 8.70604 5.89143 8.5304 5.79067 8.35844C5.0839 7.14448 3.79404 6.84697 2.90705 7.35221C2.01935 7.85912 1.87795 8.97477 2.58471 10.1864ZM9.99961 15.8805C8.40083 15.8795 7.10473 14.1952 7.10473 13.283C7.10473 12.518 8.01485 12.5374 9.25054 12.5638H9.2506C9.48951 12.5689 9.74059 12.5743 9.99961 12.5743C10.2616 12.5745 10.5154 12.5692 10.7568 12.5642L10.7569 12.5642C11.9884 12.5384 12.8945 12.5195 12.8945 13.283C12.8942 14.1942 11.5984 15.8805 9.99961 15.8805ZM13.3335 11.4662C14.2203 11.9707 16.7078 11.4001 17.4145 10.1871C18.1213 8.97572 17.9796 7.86006 17.0919 7.35316C16.2059 6.84863 14.9151 7.14542 14.2083 8.35938C14.1073 8.53202 13.9993 8.70835 13.8909 8.88527C13.2394 9.94882 12.5747 11.0338 13.3335 11.4662Z" fill="white"></path>
+                            </svg>
+                          </span>
+                          <span class="text-white font-bold text-md ml-2">
+                            +100
+                          </span>
+                        </span>
+                        <span class="flex items-center">
+                          <span class="inline-block p-2 px-3 bg-red-500 rounded">
+                            <svg class="h-3" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6.98072 4.11561C6.94697 4.0452 6.87427 4.00002 6.7942 4.00002H4.3545L6.76228 0.307008C6.80242 0.245415 6.80489 0.167414 6.76867 0.103617C6.73243 0.0396095 6.66324 0 6.5883 0H3.2942C3.21617 0 3.14492 0.042797 3.10994 0.110602L0.0217095 6.11061C-0.0102102 6.17242 -0.00671186 6.24601 0.0307571 6.305C0.0684431 6.364 0.134526 6.4 0.205966 6.4H2.32304L0.0161362 11.7224C-0.0231905 11.8134 0.0118175 11.919 0.098481 11.9706C0.131824 11.9904 0.168883 12 0.205749 12C0.264835 12 0.323101 11.9754 0.363466 11.929L6.9517 4.32899C7.00335 4.26941 7.01448 4.1862 6.98072 4.11561Z" fill="white"></path>
+                              </svg>                    
+                          </span>
+                          <span class="text-white font-bold text-md ml-2">
+                            -300
+                          </span>
+                        </span>
+                      </div>
+                      <button class="px-5 py-3 bg-purple-500 hover:bg-purple-600 rounded text-white font-bold text-sm">
+                        Accept
+                      </button>
+                    </div>
+                  </article>
+                </div>
+                <!--
+                  Card wrapper 
+                -->
+                <div class="p-2 w-full sm:w-1/2 md:w-1/3 xl:w-1/4">
+                  <article class="card relative lg:h-full flex flex-col h-full"> 
+                    <div class="text-white p-4">
+                      <img class="w-16 absolute -top-4 left-2.5 rounded-md" src="./src/assets/cards/Bitmap (2).png" alt="">
+                      <div class="pl-23">
+                        <h4 class="font-semibold">
+                          Talking Tom Gol…
+                        </h4>
+                        <p class="text-gray-300 text-sm">Run 20,000 meters.</p>
+                      </div>
+                    </div>
+                    <div class="p-4 flex justify-between items-center border-t border-gray-600 mt-auto">
+                      <div class="flex">
+                        <span class="flex items-center mr-4">
+                          <span class="p-2 bg-purple-500 rounded">
+                            <svg viewBox="0 0 20 18" class="text-white h-3" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0457 5.09816C17.4378 5.18296 17.8159 5.32034 18.1625 5.51694C20.0992 6.62242 20.5649 9.03067 19.2726 11.2461C18.4424 12.6702 16.6265 13.5061 15.0064 13.7138C14.7241 15.7417 12.5319 18 9.99985 18H9.99889C7.46686 17.9983 5.27539 15.7407 4.99331 13.7138C3.37224 13.5061 1.55728 12.6702 0.727088 11.2452C-0.56469 9.03162 -0.0987872 6.62242 1.83529 5.51789C2.18351 5.32034 2.56242 5.18367 2.95451 5.09816C2.95015 5.08272 2.94531 5.06682 2.94048 5.05092C2.93389 5.02924 2.9273 5.00756 2.92191 4.98706L2.92164 4.98607C2.78333 4.4739 2.36509 2.92523 3.34228 1.64269C4.05078 0.712264 5.1279 0.427089 5.70817 0.273458L5.71038 0.272874C6.18731 0.146623 6.82361 0 7.49011 0C8.4919 0 9.34965 0.342514 10.0006 0.947007C10.6515 0.342514 11.5092 0 12.511 0C13.1775 0 13.8131 0.146623 14.2934 0.273822C14.8707 0.425419 15.9487 0.710374 16.6581 1.64198C17.6366 2.92527 17.2173 4.47501 17.0793 4.98532L17.0792 4.98541C17.0744 5.00263 17.0689 5.02043 17.0634 5.03833C17.0573 5.05836 17.0511 5.07852 17.0457 5.09816ZM13.7367 2.32014C12.6208 2.02358 11.3815 1.84214 10.9671 3.36711C10.5537 4.89303 11.1224 7.55142 12.2383 7.84656C13.3532 8.14241 14.5935 5.96368 15.0078 4.43776C15.4203 2.91184 14.8518 2.61505 13.7367 2.32014ZM6.26328 2.31943C7.37915 2.02263 8.61868 1.84214 9.03281 3.3664C9.44527 4.89232 8.87751 7.55166 7.76165 7.84585C6.6465 8.1417 5.40721 5.96226 4.99211 4.43705C4.5787 2.91184 5.14741 2.61434 6.26328 2.31943ZM2.58471 10.1864C3.29147 11.3994 5.77868 11.9707 6.66567 11.4655C7.42584 11.0334 6.75974 9.94684 6.10717 8.88232L6.10716 8.88231L6.10715 8.88229C5.99911 8.70604 5.89143 8.5304 5.79067 8.35844C5.0839 7.14448 3.79404 6.84697 2.90705 7.35221C2.01935 7.85912 1.87795 8.97477 2.58471 10.1864ZM9.99961 15.8805C8.40083 15.8795 7.10473 14.1952 7.10473 13.283C7.10473 12.518 8.01485 12.5374 9.25054 12.5638H9.2506C9.48951 12.5689 9.74059 12.5743 9.99961 12.5743C10.2616 12.5745 10.5154 12.5692 10.7568 12.5642L10.7569 12.5642C11.9884 12.5384 12.8945 12.5195 12.8945 13.283C12.8942 14.1942 11.5984 15.8805 9.99961 15.8805ZM13.3335 11.4662C14.2203 11.9707 16.7078 11.4001 17.4145 10.1871C18.1213 8.97572 17.9796 7.86006 17.0919 7.35316C16.2059 6.84863 14.9151 7.14542 14.2083 8.35938C14.1073 8.53202 13.9993 8.70835 13.8909 8.88527C13.2394 9.94882 12.5747 11.0338 13.3335 11.4662Z" fill="white"></path>
+                            </svg>
+                          </span>
+                          <span class="text-white font-bold text-md ml-2">
+                            +100
+                          </span>
+                        </span>
+                        <span class="flex items-center">
+                          <span class="inline-block p-2 px-3 bg-red-500 rounded">
+                            <svg class="h-3" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6.98072 4.11561C6.94697 4.0452 6.87427 4.00002 6.7942 4.00002H4.3545L6.76228 0.307008C6.80242 0.245415 6.80489 0.167414 6.76867 0.103617C6.73243 0.0396095 6.66324 0 6.5883 0H3.2942C3.21617 0 3.14492 0.042797 3.10994 0.110602L0.0217095 6.11061C-0.0102102 6.17242 -0.00671186 6.24601 0.0307571 6.305C0.0684431 6.364 0.134526 6.4 0.205966 6.4H2.32304L0.0161362 11.7224C-0.0231905 11.8134 0.0118175 11.919 0.098481 11.9706C0.131824 11.9904 0.168883 12 0.205749 12C0.264835 12 0.323101 11.9754 0.363466 11.929L6.9517 4.32899C7.00335 4.26941 7.01448 4.1862 6.98072 4.11561Z" fill="white"></path>
+                              </svg>                    
+                          </span>
+                          <span class="text-white font-bold text-md ml-2">
+                            -300
+                          </span>
+                        </span>
+                      </div>
+                      <button class="px-5 py-3 bg-purple-500 hover:bg-purple-600 rounded text-white font-bold text-sm">
+                        Accept
+                      </button>
+                    </div>
+                  </article>
+                </div>
+                <!--
+                  Card wrapper 
+                -->
+                <div class="p-2 w-full sm:w-1/2 md:w-1/3 xl:w-1/4">
+                  <article class="card relative lg:h-full flex flex-col h-full"> 
+                    <div class="text-white p-4">
+                      <img class="w-16 absolute -top-4 left-2.5 rounded-md" src="./src/assets/cards/Bitmap (3).png" alt="">
+                      <div class="pl-23">
+                        <h4 class="font-semibold">
+                          Guns of Boom
+                        </h4>
+                        <p class="text-gray-300 text-sm">Eliminate 10 opponents from sniper rifle.</p>
+                      </div>
+                    </div>
+                    <div class="p-4 flex justify-between items-center border-t border-gray-600 mt-auto">
+                      <div class="flex">
+                        <span class="flex items-center mr-4">
+                          <span class="p-2 bg-purple-500 rounded">
+                            <svg viewBox="0 0 20 18" class="text-white h-3" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0457 5.09816C17.4378 5.18296 17.8159 5.32034 18.1625 5.51694C20.0992 6.62242 20.5649 9.03067 19.2726 11.2461C18.4424 12.6702 16.6265 13.5061 15.0064 13.7138C14.7241 15.7417 12.5319 18 9.99985 18H9.99889C7.46686 17.9983 5.27539 15.7407 4.99331 13.7138C3.37224 13.5061 1.55728 12.6702 0.727088 11.2452C-0.56469 9.03162 -0.0987872 6.62242 1.83529 5.51789C2.18351 5.32034 2.56242 5.18367 2.95451 5.09816C2.95015 5.08272 2.94531 5.06682 2.94048 5.05092C2.93389 5.02924 2.9273 5.00756 2.92191 4.98706L2.92164 4.98607C2.78333 4.4739 2.36509 2.92523 3.34228 1.64269C4.05078 0.712264 5.1279 0.427089 5.70817 0.273458L5.71038 0.272874C6.18731 0.146623 6.82361 0 7.49011 0C8.4919 0 9.34965 0.342514 10.0006 0.947007C10.6515 0.342514 11.5092 0 12.511 0C13.1775 0 13.8131 0.146623 14.2934 0.273822C14.8707 0.425419 15.9487 0.710374 16.6581 1.64198C17.6366 2.92527 17.2173 4.47501 17.0793 4.98532L17.0792 4.98541C17.0744 5.00263 17.0689 5.02043 17.0634 5.03833C17.0573 5.05836 17.0511 5.07852 17.0457 5.09816ZM13.7367 2.32014C12.6208 2.02358 11.3815 1.84214 10.9671 3.36711C10.5537 4.89303 11.1224 7.55142 12.2383 7.84656C13.3532 8.14241 14.5935 5.96368 15.0078 4.43776C15.4203 2.91184 14.8518 2.61505 13.7367 2.32014ZM6.26328 2.31943C7.37915 2.02263 8.61868 1.84214 9.03281 3.3664C9.44527 4.89232 8.87751 7.55166 7.76165 7.84585C6.6465 8.1417 5.40721 5.96226 4.99211 4.43705C4.5787 2.91184 5.14741 2.61434 6.26328 2.31943ZM2.58471 10.1864C3.29147 11.3994 5.77868 11.9707 6.66567 11.4655C7.42584 11.0334 6.75974 9.94684 6.10717 8.88232L6.10716 8.88231L6.10715 8.88229C5.99911 8.70604 5.89143 8.5304 5.79067 8.35844C5.0839 7.14448 3.79404 6.84697 2.90705 7.35221C2.01935 7.85912 1.87795 8.97477 2.58471 10.1864ZM9.99961 15.8805C8.40083 15.8795 7.10473 14.1952 7.10473 13.283C7.10473 12.518 8.01485 12.5374 9.25054 12.5638H9.2506C9.48951 12.5689 9.74059 12.5743 9.99961 12.5743C10.2616 12.5745 10.5154 12.5692 10.7568 12.5642L10.7569 12.5642C11.9884 12.5384 12.8945 12.5195 12.8945 13.283C12.8942 14.1942 11.5984 15.8805 9.99961 15.8805ZM13.3335 11.4662C14.2203 11.9707 16.7078 11.4001 17.4145 10.1871C18.1213 8.97572 17.9796 7.86006 17.0919 7.35316C16.2059 6.84863 14.9151 7.14542 14.2083 8.35938C14.1073 8.53202 13.9993 8.70835 13.8909 8.88527C13.2394 9.94882 12.5747 11.0338 13.3335 11.4662Z" fill="white"></path>
+                            </svg>
+                          </span>
+                          <span class="text-white font-bold text-md ml-2">
+                            +100
+                          </span>
+                        </span>
+                        <span class="flex items-center">
+                          <span class="inline-block p-2 px-3 bg-red-500 rounded">
+                            <svg class="h-3" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6.98072 4.11561C6.94697 4.0452 6.87427 4.00002 6.7942 4.00002H4.3545L6.76228 0.307008C6.80242 0.245415 6.80489 0.167414 6.76867 0.103617C6.73243 0.0396095 6.66324 0 6.5883 0H3.2942C3.21617 0 3.14492 0.042797 3.10994 0.110602L0.0217095 6.11061C-0.0102102 6.17242 -0.00671186 6.24601 0.0307571 6.305C0.0684431 6.364 0.134526 6.4 0.205966 6.4H2.32304L0.0161362 11.7224C-0.0231905 11.8134 0.0118175 11.919 0.098481 11.9706C0.131824 11.9904 0.168883 12 0.205749 12C0.264835 12 0.323101 11.9754 0.363466 11.929L6.9517 4.32899C7.00335 4.26941 7.01448 4.1862 6.98072 4.11561Z" fill="white"></path>
+                              </svg>                    
+                          </span>
+                          <span class="text-white font-bold text-md ml-2">
+                            -300
+                          </span>
+                        </span>
+                      </div>
+                      <button class="px-5 py-3 bg-purple-500 hover:bg-purple-600 rounded text-white font-bold text-sm">
+                        Accept
+                      </button>
+                    </div>
+                  </article>
+                </div>
+                <!--
+                  Card wrapper 
+                -->
+                <div class="p-2 w-full sm:w-1/2 md:w-1/3 xl:w-1/4">
+                  <article class="card relative lg:h-full flex flex-col h-full"> 
+                    <div class="text-white p-4">
+                      <img class="w-16 absolute -top-4 left-2.5 rounded-md" src="./src/assets/cards/Bitmap (4).png" alt="">
+                      <div class="pl-23">
+                        <h4 class="font-semibold">
+                          Shadow Fight 2
+                        </h4>
+                        <p class="text-gray-300 text-sm">Defeat your opponent without special moves.</p>
+                      </div>
+                    </div>
+                    <div class="p-4 flex justify-between items-center border-t border-gray-600 mt-auto">
+                      <div class="flex">
+                        <span class="flex items-center mr-4">
+                          <span class="p-2 bg-purple-500 rounded">
+                            <svg viewBox="0 0 20 18" class="text-white h-3" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0457 5.09816C17.4378 5.18296 17.8159 5.32034 18.1625 5.51694C20.0992 6.62242 20.5649 9.03067 19.2726 11.2461C18.4424 12.6702 16.6265 13.5061 15.0064 13.7138C14.7241 15.7417 12.5319 18 9.99985 18H9.99889C7.46686 17.9983 5.27539 15.7407 4.99331 13.7138C3.37224 13.5061 1.55728 12.6702 0.727088 11.2452C-0.56469 9.03162 -0.0987872 6.62242 1.83529 5.51789C2.18351 5.32034 2.56242 5.18367 2.95451 5.09816C2.95015 5.08272 2.94531 5.06682 2.94048 5.05092C2.93389 5.02924 2.9273 5.00756 2.92191 4.98706L2.92164 4.98607C2.78333 4.4739 2.36509 2.92523 3.34228 1.64269C4.05078 0.712264 5.1279 0.427089 5.70817 0.273458L5.71038 0.272874C6.18731 0.146623 6.82361 0 7.49011 0C8.4919 0 9.34965 0.342514 10.0006 0.947007C10.6515 0.342514 11.5092 0 12.511 0C13.1775 0 13.8131 0.146623 14.2934 0.273822C14.8707 0.425419 15.9487 0.710374 16.6581 1.64198C17.6366 2.92527 17.2173 4.47501 17.0793 4.98532L17.0792 4.98541C17.0744 5.00263 17.0689 5.02043 17.0634 5.03833C17.0573 5.05836 17.0511 5.07852 17.0457 5.09816ZM13.7367 2.32014C12.6208 2.02358 11.3815 1.84214 10.9671 3.36711C10.5537 4.89303 11.1224 7.55142 12.2383 7.84656C13.3532 8.14241 14.5935 5.96368 15.0078 4.43776C15.4203 2.91184 14.8518 2.61505 13.7367 2.32014ZM6.26328 2.31943C7.37915 2.02263 8.61868 1.84214 9.03281 3.3664C9.44527 4.89232 8.87751 7.55166 7.76165 7.84585C6.6465 8.1417 5.40721 5.96226 4.99211 4.43705C4.5787 2.91184 5.14741 2.61434 6.26328 2.31943ZM2.58471 10.1864C3.29147 11.3994 5.77868 11.9707 6.66567 11.4655C7.42584 11.0334 6.75974 9.94684 6.10717 8.88232L6.10716 8.88231L6.10715 8.88229C5.99911 8.70604 5.89143 8.5304 5.79067 8.35844C5.0839 7.14448 3.79404 6.84697 2.90705 7.35221C2.01935 7.85912 1.87795 8.97477 2.58471 10.1864ZM9.99961 15.8805C8.40083 15.8795 7.10473 14.1952 7.10473 13.283C7.10473 12.518 8.01485 12.5374 9.25054 12.5638H9.2506C9.48951 12.5689 9.74059 12.5743 9.99961 12.5743C10.2616 12.5745 10.5154 12.5692 10.7568 12.5642L10.7569 12.5642C11.9884 12.5384 12.8945 12.5195 12.8945 13.283C12.8942 14.1942 11.5984 15.8805 9.99961 15.8805ZM13.3335 11.4662C14.2203 11.9707 16.7078 11.4001 17.4145 10.1871C18.1213 8.97572 17.9796 7.86006 17.0919 7.35316C16.2059 6.84863 14.9151 7.14542 14.2083 8.35938C14.1073 8.53202 13.9993 8.70835 13.8909 8.88527C13.2394 9.94882 12.5747 11.0338 13.3335 11.4662Z" fill="white"></path>
+                            </svg>
+                          </span>
+                          <span class="text-white font-bold text-md ml-2">
+                            +100
+                          </span>
+                        </span>
+                        <span class="flex items-center">
+                          <span class="inline-block p-2 px-3 bg-red-500 rounded">
+                            <svg class="h-3" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6.98072 4.11561C6.94697 4.0452 6.87427 4.00002 6.7942 4.00002H4.3545L6.76228 0.307008C6.80242 0.245415 6.80489 0.167414 6.76867 0.103617C6.73243 0.0396095 6.66324 0 6.5883 0H3.2942C3.21617 0 3.14492 0.042797 3.10994 0.110602L0.0217095 6.11061C-0.0102102 6.17242 -0.00671186 6.24601 0.0307571 6.305C0.0684431 6.364 0.134526 6.4 0.205966 6.4H2.32304L0.0161362 11.7224C-0.0231905 11.8134 0.0118175 11.919 0.098481 11.9706C0.131824 11.9904 0.168883 12 0.205749 12C0.264835 12 0.323101 11.9754 0.363466 11.929L6.9517 4.32899C7.00335 4.26941 7.01448 4.1862 6.98072 4.11561Z" fill="white"></path>
+                              </svg>                    
+                          </span>
+                          <span class="text-white font-bold text-md ml-2">
+                            -300
+                          </span>
+                        </span>
+                      </div>
+                      <button class="px-5 py-3 bg-purple-500 hover:bg-purple-600 rounded text-white font-bold text-sm">
+                        Accept
+                      </button>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              
+              
+            </section>
+          </section>
+        </div>
+      </main>
+      </div>
+    </div>
+    
+    
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
